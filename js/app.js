@@ -1,7 +1,7 @@
 window.$ = window.jQuery
 
 $(document).ready(function() {
-  console.log("mom")
+  console.log("wtfffff")
   var $masthead = $('#masthead')
   var $burger = $masthead.find(".burger")
 
