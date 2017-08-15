@@ -9,6 +9,13 @@
  * @package om
  */
 
+	$socialargs = [
+		'post_type' => 'social',
+		'p'         => 45
+	];
+
+	$sq = new WP_Query($socialargs);
+
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -40,9 +47,57 @@
 			<?php
 				wp_nav_menu( array(
 					'menu' => 'Primary Menu',
-				) );
-			?>
+				) ); ?>
+
+			<span class="social mobile">
+				<?php
+				if ( $sq->have_posts() ) {
+					while ( $sq->have_posts() ) {
+						$sq->the_post();
+						$links = get_field('links');
+
+						if (have_rows('links')):
+							while(have_rows('links')) : the_row();
+								$icon = get_sub_field('icon');
+								$url = get_sub_field('url');
+							?>
+							<a class="icon" href="<?php echo $url ?>">
+								<img src="<?php echo $icon ?>" />
+							</a>
+							<?php
+							endwhile;
+						endif;
+					}
+					wp_reset_postdata();
+				}
+				?>
+			<span>
+
 		</nav><!-- #site-navigation -->
+
+		<span class="social desktop">
+			<?php
+			if ( $sq->have_posts() ) {
+				while ( $sq->have_posts() ) {
+					$sq->the_post();
+					$links = get_field('links');
+
+					if (have_rows('links')):
+						while(have_rows('links')) : the_row();
+							$icon = get_sub_field('icon');
+							$url = get_sub_field('url');
+						?>
+						<a class="icon" href="<?php echo $url ?>">
+							<img src="<?php echo $icon ?>" />
+						</a>
+						<?php
+						endwhile;
+					endif;
+				}
+				wp_reset_postdata();
+			}
+			?>
+		</span>
 
 		<span class="burger">
 			BURG
