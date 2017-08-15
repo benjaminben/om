@@ -129,6 +129,13 @@ function om_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'om_scripts' );
 
+function add_theme_scripts() {
+  wp_register_script('gsap', get_template_directory_uri() . '/js/gsap/uncompressed/TweenMax.js');
+  wp_register_script('app', get_template_directory_uri() . '/js/app.js', array( 'jquery' ));
+  wp_enqueue_script('app');
+}
+add_action( 'wp_enqueue_scripts', 'add_theme_scripts' );
+
 /**
  * Implement the Custom Header feature.
  */
@@ -155,3 +162,6 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+// For dev(???) recompile scss on refresh
+define('WP_SCSS_ALWAYS_RECOMPILE', true);
