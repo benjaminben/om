@@ -30,7 +30,7 @@
 					<h1 class="text-center title uppercase"><?php echo $title ?></h1>
 		  	<?php } ?>
   		  <?php if ($body) { ?>
-  				<?php echo $body ?>
+  				<span class="block body"><?php echo $body ?></span>
   	  	<?php } ?>
 			  <?
 			  endwhile;
