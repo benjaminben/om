@@ -745,9 +745,8 @@ body.admin-bar #page {
 #masthead .custom-logo-link {
   display: inline-block;
   vertical-align: middle;
-  padding: 0.5em 0 0 0.5em;
-  height: 90%;
-  top: 2.5%;
+  height: 100%;
+  padding: 0.33em 0 0.33em 0.33em;
 }
 #masthead .custom-logo-link img {
   width: auto;
@@ -785,6 +784,8 @@ body.admin-bar #page {
 }
 #masthead nav {
   display: inline-block;
+  vertical-align: middle;
+  font-size: 0.8em;
   line-height: 1em;
 }
 #masthead nav .menu-primary-menu-container {
@@ -809,7 +810,6 @@ body.admin-bar #page {
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 0.1em;
-  font-size: 0.9em;
 }
 @media screen and (max-width: 480px) {
   #masthead .social.desktop {
@@ -865,7 +865,7 @@ body.home #content .tag .cta {
   text-decoration: none;
   font-size: 1.33em;
   top: -5px;
-  transition: all 0.2s ease;
+  transition: top 0.2s ease, box-shadow 0.2s ease;
   overflow: hidden;
 }
 body.home #content .tag .cta:after {

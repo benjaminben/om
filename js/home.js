@@ -103,4 +103,25 @@ $(document).ready(function() {
     document.getElementById('pano'),
     document.getElementById('pano_src').src
   )
+  $tag = $('.tag')
+  $title = $('.tag .title')
+  $cta = $('.tag .cta')
+  $info = $('.tag .info')
+
+  $title.css('opacity', 0)
+  $cta.css('opacity', 0)
+  $info.css('opacity', 0)
+
+  TweenLite.to($title, 0.33, {
+    autoAlpha: 1,
+    delay: 0
+  })
+  TweenLite.to($cta, 0.33, {
+    autoAlpha: 1,
+    delay: 0.33
+  })
+  TweenLite.to($info, 0.33, {
+    autoAlpha: 1,
+    delay: 0.66
+  })
 })
