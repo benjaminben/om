@@ -3,15 +3,38 @@ $om_red_dark: rgba(116,18,22,1);
 
 body {
   font-family: 'Helvetica neue', arial;
+  position: relative;
 
   #page {
     min-height: 100vh;
+    padding-top: 60px;
+    box-sizing: border-box;
   }
 
   &.admin-bar {
     #page {
       min-height: calc(100vh - 32px);
     }
+  }
+}
+
+p, span, h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
+.hentry, .entry-content {
+  margin: 0
+}
+
+.entry-content {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 40px 0;
+
+  .title {
+    padding-bottom: 20px;
+    letter-spacing: 0.1em;
   }
 }
 
