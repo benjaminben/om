@@ -26,23 +26,22 @@
   }
 
   .social {
-    display: inline-block;
-    vertical-align: middle;
+    display: table;
 
     .icon {
       display: inline-block;
       vertical-align: middle;
-      margin-right: 0.5em;
+      padding-right: 1em;
 
       &:last-of-type {
-        margin-right: 0;
+        padding-right: 0;
       }
 
       img {
         width: auto;
         height: auto;
-        max-width: 20px;
-        max-height: 20px;
+        max-width: 23px;
+        max-height: 23px;
         vertical-align: middle;
       }
     }
