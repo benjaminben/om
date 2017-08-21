@@ -1,6 +1,7 @@
 #masthead {
   position: relative;
   height: 60px;
+  z-index: 1;
 
   .burger {
     display: none;

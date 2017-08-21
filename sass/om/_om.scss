@@ -1,5 +1,14 @@
 body {
-  background: lightblue
+  #page {
+    min-height: 100vh;
+  }
+
+  &.admin-bar {
+    #page {
+      min-height: calc(100vh - 32px);
+    }
+  }
 }
 
 @import "nav";
+@import "home";
