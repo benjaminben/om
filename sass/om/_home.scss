@@ -50,8 +50,8 @@ body.home {
         }
 
         &:hover {
-          top: 0;
-          box-shadow: 0px 5px 0px 0px $om_red_dark;
+          top: -1px;
+          box-shadow: 0px 0px 3px 0px $om_red_dark;
 
           &:after {
             animation: cta-sheen 0.5s;
@@ -88,5 +88,25 @@ body.home {
   100% {
     right: -11%;
     width: 0%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body.home {
+    #content {
+      .tag {
+        text-align: center;
+        .title {
+          font-size: 12vw;
+        }
+        .cta {
+          // display: block;
+          margin: 1em 0;
+        }
+        .info {
+          display: block;
+        }
+      }
+    }
   }
 }

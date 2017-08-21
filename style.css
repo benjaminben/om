@@ -912,8 +912,8 @@ body.home #content .tag .cta:after {
   background-color: white;
 }
 body.home #content .tag .cta:hover {
-  top: 0;
-  box-shadow: 0px 5px 0px 0px rgba(116, 18, 22, 1);
+  top: -1px;
+  box-shadow: 0px 0px 3px 0px rgba(116, 18, 22, 1);
 }
 body.home #content .tag .cta:hover:after {
   animation: cta-sheen 0.5s;
@@ -941,5 +941,19 @@ body.home #content .tag .info a:hover {
   100% {
     right: -11%;
     width: 0%;
+  }
+}
+@media screen and (max-width: 768px) {
+  body.home #content .tag {
+    text-align: center;
+  }
+  body.home #content .tag .title {
+    font-size: 12vw;
+  }
+  body.home #content .tag .cta {
+    margin: 1em 0;
+  }
+  body.home #content .tag .info {
+    display: block;
   }
 }
