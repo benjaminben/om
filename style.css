@@ -612,16 +612,128 @@ embed, iframe, object {
 /*--------------------------------------------------------------
  # Custom
  --------------------------------------------------------------*/
+body {
+  font-family: 'Helvetica neue', arial;
+}
 body #page {
   min-height: 100vh;
 }
 body.admin-bar #page {
   min-height: calc(100vh - 32px);
 }
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.fixed {
+  position: fixed;
+}
+.block {
+  display: block;
+}
+.inline {
+  display: inline;
+}
+.inline-block {
+  display: inline-block;
+}
+.table {
+  display: table;
+}
+.inline-table {
+  display: inline-table;
+}
+.table-row {
+  display: table-row;
+}
+.table-cell {
+  display: table-cell;
+}
+.flex {
+  display: flex;
+}
+.inline-flex {
+  display: inline-flex;
+}
+.none {
+  display: none;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.clear-both {
+  clear: both;
+}
+.row {
+  flex-flow: row wrap;
+}
+.column {
+  flex-flow: column wrap;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-around {
+  justify-content: space-around;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.align-center {
+  align-items: center;
+}
+.width100 {
+  width: 100%;
+}
+.height100 {
+  height: 100%;
+}
+.v-top {
+  vertical-align: top;
+}
+.v-middle {
+  vertical-align: middle;
+}
+.v-bottom {
+  vertical-align: bottom;
+}
+.light {
+  font-weight: 200;
+}
+.bold {
+  font-weight: bold;
+}
+.italic {
+  font-style: italic;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.pointer {
+  cursor: pointer;
+}
+.no-select {
+  user-select: none;
+}
 #masthead {
   position: relative;
   height: 60px;
   z-index: 1;
+  background: rgba(0, 0, 0, 0.1);
 }
 #masthead .burger {
   display: none;
@@ -634,13 +746,13 @@ body.admin-bar #page {
   display: inline-block;
   vertical-align: middle;
   padding: 0.5em 0 0 0.5em;
-  height: 100%;
+  height: 90%;
+  top: 2.5%;
 }
 #masthead .custom-logo-link img {
   width: auto;
   height: auto;
-  max-height: 90%;
-  top: 5%;
+  max-height: 100%;
 }
 #masthead .social {
   display: inline-block;
@@ -673,6 +785,7 @@ body.admin-bar #page {
 }
 #masthead nav {
   display: inline-block;
+  line-height: 1em;
 }
 #masthead nav .menu-primary-menu-container {
   display: inline-block;
@@ -690,6 +803,13 @@ body.admin-bar #page {
 }
 #masthead nav .menu-primary-menu-container ul li:last-of-type {
   margin-right: 0;
+}
+#masthead nav .menu-primary-menu-container ul li a {
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  font-size: 0.9em;
 }
 @media screen and (max-width: 480px) {
   #masthead .social.desktop {
@@ -724,4 +844,71 @@ body.home #content canvas {
   left: 0;
   width: 100%;
   height: 100%;
+}
+body.home #content .tag {
+  width: 100%;
+  height: 100%;
+  color: white;
+  padding-left: 2em;
+}
+body.home #content .tag .title {
+  margin: 0 0 0.2em;
+  font-size: 8em;
+  line-height: 1.33em;
+}
+body.home #content .tag .cta {
+  padding: 0.33em 1em;
+  background-color: rgba(255, 0, 0, 1);
+  box-shadow: 0px 8px 0px 0px rgba(155, 0, 0, 1);
+  border-radius: 3px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.33em;
+  top: -5px;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+body.home #content .tag .cta:after {
+  content: '';
+  box-shadow: 0px 0px 3px 0px white;
+  transform: skewX(-20deg);
+  opacity: 0.9;
+  position: absolute;
+  top: 0;
+  right: 111%;
+  width: 0%;
+  height: 100%;
+  background-color: white;
+}
+body.home #content .tag .cta:hover {
+  top: 0;
+  box-shadow: 0px 5px 0px 0px rgba(155, 0, 0, 1);
+}
+body.home #content .tag .cta:hover:after {
+  animation: cta-sheen 0.5s;
+}
+body.home #content .tag .info {
+  margin-left: 1em;
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+}
+body.home #content .tag .info a {
+  color: white;
+  text-decoration: none;
+}
+body.home #content .tag .info a:hover {
+  text-decoration: underline;
+}
+@keyframes cta-sheen {
+  0% {
+    right: 111%;
+    width: 0%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    right: -11%;
+    width: 0%;
+  }
 }

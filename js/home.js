@@ -66,7 +66,7 @@ var Pano = function(canvas, img_uri) {
   }.bind(this)
   this.update = function() {
     this.velocity = this.speed * this.delta
-    this.panoOffset += this.velocity
+    this.panoOffset -= this.velocity
     if (this.panoOffset < -(this.panoWidth + this.canvas.width)) {
       this.panoOffset += this.panoWidth
     }
@@ -74,6 +74,11 @@ var Pano = function(canvas, img_uri) {
       this.panoOffset -= this.panoWidth
     }
   }.bind(this)
+
+  // Input
+  this.canvas.addEventListener('mousemouse', function(e) {
+
+  }.bind(this))
 
   // Running
   this.time = function() {

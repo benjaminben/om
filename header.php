@@ -43,13 +43,7 @@
 				</a>
 		<?php	} ?>
 
-		<nav id="site-navigation">
-			<?php
-				wp_nav_menu( array(
-					'menu' => 'Primary Menu',
-				) ); ?>
-
-			<span class="social mobile">
+		<nav id="site-navigation"><?php wp_nav_menu( array('menu' => 'Primary Menu') ); ?><span class="social mobile">
 				<?php
 				if ( $sq->have_posts() ) {
 					while ( $sq->have_posts() ) {
