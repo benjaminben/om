@@ -1,6 +1,7 @@
 var Pano = function(canvas, img_uri) {
   // Context
   this.canvas = canvas
+  this.parent = canvas.parentElement
   this.ctx = canvas.getContext('2d')
   this.src = document.createElement('img')
   this.ptrn = null
@@ -12,6 +13,8 @@ var Pano = function(canvas, img_uri) {
   this.delta = this.now - this.then
   this.speed = 60
   this.velocity = this.speed * this.delta
+  this.friction = 200
+  this.currentInput = {x: 0, y: 0}
 
   // Sizing
   this.resize = function() {
@@ -75,10 +78,62 @@ var Pano = function(canvas, img_uri) {
     }
   }.bind(this)
 
-  // Input
-  this.canvas.addEventListener('mousemouse', function(e) {
 
-  }.bind(this))
+  // Input
+  this.lerpSpeed = function() {
+    // console.log(this.speed)
+    if (this.speed < 0) {
+      this.speed = Math.min(this.speed + this.delta * this.friction, 0)
+      return window.requestAnimationFrame(this.lerpSpeed)
+    } else if (this.speed > 0) {
+      this.speed = Math.max(this.speed - this.delta * this.friction, 0)
+      return window.requestAnimationFrame(this.lerpSpeed)
+    }
+  }.bind(this)
+
+  this.handleMouseInputStart = function(e) {
+    this.speed = 0
+    this.currentInput.x = e.clientX
+    // this.currentInput.y = e.clientY
+    this.parent.removeEventListener('mousedown', this.handleMouseInputStart)
+    this.parent.addEventListener('mousemove', this.handleMouseDrag)
+    window.addEventListener('mouseup', this.handleMouseInputEnd)
+  }.bind(this)
+  this.handleMouseDrag = function(e) {
+    this.speed = (this.currentInput.x - e.clientX) * 60
+    // this.panoOffset += clientX - this.currentInput.x
+    this.currentInput.x = e.clientX
+  }.bind(this)
+  this.handleMouseInputEnd = function(e) {
+    this.parent.removeEventListener('mousemove', this.handleMouseDrag)
+    window.removeEventListener('mouseup', this.handleMouseInputEnd)
+    this.parent.addEventListener('mousedown', this.handleMouseInputStart)
+    this.lerpSpeed()
+  }.bind(this)
+
+  this.handleTouchInputStart = function(e) {
+    this.speed = 0
+    this.currentInput.x = e.targetTouches['0'].clientX
+    // this.currentInput.y = e.clientY
+    this.parent.removeEventListener('touchstart', this.handleTouchInputStart)
+    this.parent.addEventListener('touchmove', this.handleTouchDrag)
+    window.addEventListener('touchend', this.handleTouchInputEnd)
+  }.bind(this)
+  this.handleTouchDrag = function(e) {
+    this.speed = (this.currentInput.x - e.targetTouches['0'].clientX) * 60
+    // this.panoOffset += clientX - this.currentInput.x
+    this.currentInput.x = e.targetTouches['0'].clientX
+  }.bind(this)
+  this.handleTouchInputEnd = function(e) {
+    this.parent.removeEventListener('touchmove', this.handleDrag)
+    window.removeEventListener('touchend', this.handleInputEnd)
+    this.parent.addEventListener('touchstart', this.handleInputStart)
+    this.lerpSpeed()
+  }.bind(this)
+
+  this.parent.addEventListener('mousedown', this.handleMouseInputStart)
+  this.parent.addEventListener('touchstart', this.handleTouchInputStart)
+
 
   // Running
   this.time = function() {
