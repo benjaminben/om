@@ -881,6 +881,7 @@ body.home #content .tag {
   height: 100%;
   color: white;
   padding-left: 2em;
+  user-select: none;
 }
 body.home #content .tag .title {
   margin: 0 0 0.2em;
