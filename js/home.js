@@ -96,16 +96,22 @@ var Pano = function(canvas, img_uri) {
   this.handleMouseInputStart = function(e) {
     this.speed = 0
     this.currentInput.x = e.clientX
+    this.inputStart.x = e.clientX
     this.parent.removeEventListener('mousedown', this.handleMouseInputStart)
     this.parent.addEventListener('mousemove', this.handleMouseDrag)
     window.addEventListener('mouseup', this.handleMouseInputEnd)
   }.bind(this)
   this.handleMouseDrag = function(e) {
-    window.cancelAnimationFrame(this.lerp)
-    this.lerpSpeed((this.currentInput.x - e.clientX) * 60)
+    // window.cancelAnimationFrame(this.lerp)
+    // this.lerpSpeed((this.currentInput.x - e.clientX) * 60)
+    // this.currentInput.x = e.clientX
+
+    this.speed = (this.currentInput.x - e.clientX) * 60
     this.currentInput.x = e.clientX
   }.bind(this)
   this.handleMouseInputEnd = function(e) {
+    this.inputEnd.x = this.currentInput.x
+    this.speed = (this.inputStart.x - this.inputEnd.x) * 10
     this.parent.removeEventListener('mousemove', this.handleMouseDrag)
     window.removeEventListener('mouseup', this.handleMouseInputEnd)
     this.parent.addEventListener('mousedown', this.handleMouseInputStart)

@@ -767,8 +767,34 @@ p, span, h1, h2, h3, h4, h5 {
   display: none;
   position: absolute;
   right: 0.5em;
-  top: 0.5em;
+  top: 30px;
   cursor: pointer;
+  width: 40px;
+  height: 30px;
+  transform: translateY(-50%);
+}
+#masthead .burger svg {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#masthead .burger svg line {
+  transition: transform 0.33s ease;
+}
+#masthead .burger svg line:first-of-type {
+  transform: rotate(0deg);
+}
+#masthead .burger svg line:nth-of-type(2) {
+  transform-origin: 100px 50px;
+  transform: scaleX(1);
+}
+#masthead .burger svg line:nth-of-type(3) {
+  transform-origin: 100px 95px;
+  transform: scaleX(1);
+}
+#masthead .burger svg line:last-of-type {
+  transform-origin: 50px 50px;
+  transform: rotate(-45deg) scaleX(0);
 }
 #masthead .custom-logo-link {
   display: inline-block;
@@ -842,21 +868,76 @@ p, span, h1, h2, h3, h4, h5 {
   text-decoration: none;
   letter-spacing: 0.1em;
 }
+#masthead.active .burger svg line:first-of-type {
+  transform: rotate(45deg) scaleX(1.3);
+}
+#masthead.active .burger svg line:nth-of-type(2) {
+  transform: scaleX(0);
+}
+#masthead.active .burger svg line:nth-of-type(3) {
+  transform: scaleX(0);
+}
+#masthead.active .burger svg line:last-of-type {
+  transform: rotate(-45deg) scale(1);
+}
 @media screen and (max-width: 480px) {
+  #masthead {
+    height: 60px;
+    transition: height 0.33s ease;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.8);
+  }
+  #masthead .custom-logo-link {
+    height: 60px;
+  }
   #masthead .social.desktop {
     display: none;
   }
   #masthead .social.mobile {
     display: block;
+    padding-top: 1.33em;
+  }
+  #masthead .social .icon img {
+    max-width: 30px;
+    max-height: 30px;
   }
   #masthead nav {
-    display: none;
+    display: block;
+    height: auto;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.33s ease;
+  }
+  #masthead nav .menu-primary-menu-container {
+    display: block;
+  }
+  #masthead nav .menu-primary-menu-container ul {
+    display: block;
+    padding: 0;
+  }
+  #masthead nav .menu-primary-menu-container ul li {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 1.2em 0;
+    font-size: 2em;
+    line-height: 1em;
   }
   #masthead .burger {
     display: inline;
   }
+  #masthead.active {
+    padding-bottom: 20px;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: scroll;
+    transition: height 0.33s ease;
+  }
   #masthead.active nav {
-    display: inline-block;
+    display: block;
+    opacity: 1;
+    transition: opacity 0.33s ease;
   }
 }
 body.home {
@@ -957,5 +1038,21 @@ body.home #content .tag .info a:hover {
   }
   body.home #content .tag .info {
     display: block;
+  }
+}
+@media screen and (max-width: 782px) {
+  body.admin-bar #page {
+    min-height: calc(100vh - 46px);
+  }
+  body.admin-bar #masthead {
+    top: 46px;
+  }
+}
+@media screen and (max-width: 600px) {
+  #wpadminbar {
+    position: fixed;
+  }
+  .entry-content .title {
+    font-size: 1.33em;
   }
 }

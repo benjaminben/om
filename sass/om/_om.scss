@@ -48,3 +48,28 @@ p, span, h1, h2, h3, h4, h5 {
 @import "global";
 @import "nav";
 @import "home";
+
+@media screen and (max-width: 782px) {
+  body {
+    &.admin-bar {
+      #page {
+        min-height: calc(100vh - 46px);
+      }
+      #masthead {
+        top: 46px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #wpadminbar {
+    position: fixed
+  }
+
+  .entry-content {
+    .title {
+      font-size: 1.33em;
+    }
+  }
+}

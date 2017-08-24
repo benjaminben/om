@@ -94,7 +94,12 @@
 		</span>
 
 		<span class="burger">
-			BURG
+			<svg width="100" height="100" viewbox="0 0 100 100">
+				<line x1="10" x2="100" y1="5" y2="5" stroke-width="10" stroke="white" />
+				<line x1="40" x2="100" y1="50" y2="50" stroke-width="10" stroke="white" />
+				<line x1="70" x2="100" y1="95" y2="95" stroke-width="10" stroke="white" />
+				<line x1="-14" x2="106" y1="50" y2="50" stroke-width="10" stroke="white" />
+			</svg>
 		</span>
 	</header><!-- #masthead -->
 
