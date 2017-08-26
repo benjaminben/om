@@ -15,7 +15,6 @@ var Pano = function(canvas, img_uri) {
   this.velocity = this.speed * this.delta
   this.friction = 1000
   this.lerp = null
-  this.inputStart = {x: 0, y: 0}
   this.currentInput = {x: 0, y: 0}
   this.inputEnd = this.currentInput
 
@@ -96,22 +95,20 @@ var Pano = function(canvas, img_uri) {
   this.handleMouseInputStart = function(e) {
     this.speed = 0
     this.currentInput.x = e.clientX
-    this.inputStart.x = e.clientX
+    this.currentInput.t = Date.now()
     this.parent.removeEventListener('mousedown', this.handleMouseInputStart)
     this.parent.addEventListener('mousemove', this.handleMouseDrag)
     window.addEventListener('mouseup', this.handleMouseInputEnd)
   }.bind(this)
   this.handleMouseDrag = function(e) {
-    // window.cancelAnimationFrame(this.lerp)
-    // this.lerpSpeed((this.currentInput.x - e.clientX) * 60)
-    // this.currentInput.x = e.clientX
-
-    this.speed = (this.currentInput.x - e.clientX) * 60
+    var time = Date.now(),
+        clientX = e.clientX,
+        vel = -(clientX - this.currentInput.x) / (time - this.currentInput.t)
+    this.speed = vel * 1000
     this.currentInput.x = e.clientX
+    this.currentInput.t = time
   }.bind(this)
   this.handleMouseInputEnd = function(e) {
-    this.inputEnd.x = this.currentInput.x
-    this.speed = (this.inputStart.x - this.inputEnd.x) * 10
     this.parent.removeEventListener('mousemove', this.handleMouseDrag)
     window.removeEventListener('mouseup', this.handleMouseInputEnd)
     this.parent.addEventListener('mousedown', this.handleMouseInputStart)
@@ -121,18 +118,20 @@ var Pano = function(canvas, img_uri) {
   this.handleTouchInputStart = function(e) {
     this.speed = 0
     this.currentInput.x = e.targetTouches['0'].clientX
-    this.inputStart.x = e.targetTouches['0'].clientX
+    this.currentInput.t = Date.now()
     this.parent.removeEventListener('touchstart', this.handleTouchInputStart)
     this.parent.addEventListener('touchmove', this.handleTouchDrag)
     window.addEventListener('touchend', this.handleTouchInputEnd)
   }.bind(this)
   this.handleTouchDrag = function(e) {
-    this.speed = (this.currentInput.x - e.targetTouches['0'].clientX) * 60
-    this.currentInput.x = e.targetTouches['0'].clientX
+    var time = Date.now(),
+        clientX = e.targetTouches['0'].clientX,
+        vel = -(clientX - this.currentInput.x) / (time - this.currentInput.t)
+    this.speed = vel * 1000
+    this.currentInput.x = clientX
+    this.currentInput.t = time
   }.bind(this)
   this.handleTouchInputEnd = function(e) {
-    this.inputEnd.x = this.currentInput.x
-    this.speed = (this.inputStart.x - this.inputEnd.x) * 10
     this.parent.removeEventListener('touchmove', this.handleTouchDrag)
     window.removeEventListener('touchend', this.handleTouchInputEnd)
     this.parent.addEventListener('touchstart', this.handleTouchInputStart)
