@@ -161,11 +161,13 @@ var Pano = function(canvas, img_uri) {
 }
 
 $(document).ready(function() {
-  console.log('home')
-  var pano = new Pano(
-    document.getElementById('pano'),
-    document.getElementById('pano_src').src
-  )
+  var pano_src = document.getElementById('pano_src').src
+
+  var $tag,
+      $title,
+      $cta,
+      $info
+
   $tag = $('.tag')
   $title = $('.tag .title')
   $cta = $('.tag .cta')
@@ -175,16 +177,30 @@ $(document).ready(function() {
   $cta.css('opacity', 0)
   $info.css('opacity', 0)
 
-  TweenLite.to($title, 0.33, {
-    autoAlpha: 1,
-    delay: 0
-  })
-  TweenLite.to($cta, 0.33, {
-    autoAlpha: 1,
-    delay: 0.33
-  })
-  TweenLite.to($info, 0.33, {
-    autoAlpha: 1,
-    delay: 0.66
-  })
+  var init = function() {
+    var pano = new Pano(
+      document.getElementById('pano'),
+      pano_src
+    )
+
+    TweenLite.to($title, 0.33, {
+      autoAlpha: 1,
+      delay: 0
+    })
+    TweenLite.to($cta, 0.33, {
+      autoAlpha: 1,
+      delay: 0.33
+    })
+    TweenLite.to($info, 0.33, {
+      autoAlpha: 1,
+      delay: 0.66
+    })
+
+    $('body.home').addClass('loaded')
+  }
+
+  var preload = document.createElement('img')
+  preload.addEventListener('load', init)
+  // preload.addEventListener('error', init) // should i shouldnt i...
+  preload.src = pano_src
 })

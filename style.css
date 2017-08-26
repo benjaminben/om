@@ -943,6 +943,35 @@ p, span, h1, h2, h3, h4, h5 {
 body.home {
   position: relative;
 }
+body.home:before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: white;
+  z-index: 10;
+}
+body.home:after {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 66vw;
+  height: 66vw;
+  max-width: 150px;
+  max-height: 150px;
+  background-image: url('images/om-logo-black.svg');
+  background-size: 100%;
+  background-position: center;
+  transform-origin: 50% 50%;
+}
+body.home.loaded:before, body.home.loaded:after {
+  display: none;
+}
 body.home #content {
   position: absolute;
   top: 0;
@@ -1023,6 +1052,11 @@ body.home #content .tag .info a:hover {
   100% {
     right: -11%;
     width: 0%;
+  }
+}
+@keyframes logo-scale {
+  to {
+    transform: scale(1.2);
   }
 }
 @media screen and (max-width: 768px) {

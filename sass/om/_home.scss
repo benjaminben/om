@@ -1,6 +1,39 @@
 body.home {
   position: relative;
 
+  &:before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    height: 100%;
+    width: 100%;
+    background: white;
+    z-index: 10;
+  }
+
+  &:after {
+    content: '';
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 66vw;
+    height: 66vw;
+    max-width: 150px;
+    max-height: 150px;
+    background-image: url('images/om-logo-black.svg');
+    background-size: 100%;
+    background-position: center;
+    transform-origin: 50% 50%;
+    // animation: logo-scale 1s ease-in-out infinite alternate;
+  }
+
+  &.loaded {
+    &:before, &:after {
+      display: none;
+    }
+  }
+
   #content {
     position: absolute;
     top: 0; left: 0;
@@ -89,6 +122,12 @@ body.home {
   100% {
     right: -11%;
     width: 0%;
+  }
+}
+
+@keyframes logo-scale {
+  to {
+    transform: scale(1.2)
   }
 }
 
